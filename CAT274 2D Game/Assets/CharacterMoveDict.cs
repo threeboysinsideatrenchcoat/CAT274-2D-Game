@@ -66,13 +66,13 @@ public class CharacterMoveDict : MonoBehaviour
         }
     }
 
-        public void DisplayInventory()
+    public void DisplayInventory()
+    {
+        inventoryDisplay.text = "";
+        foreach (var item in myInventoryDict)
         {
-            inventoryDisplay.text = "";
-            foreach (var item in myInventoryDict)
-            {
-                inventoryDisplay.text += "Item: " + item.Key + ", Quantity: " + item.Value + "\n";
-            }
+            inventoryDisplay.text += "Item: " + item.Key + ", Quantity: " + item.Value + "\n";
         }
+    }
 
 }

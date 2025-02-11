@@ -16,6 +16,7 @@ public class CharacterMoveDict : MonoBehaviour
     public Dictionary<string, int> myInventoryDict = new Dictionary<string, int>();
 
     public TextMeshProUGUI inventoryDisplay;
+
     
     // Start is called before the first frame update
     private void Awake()
@@ -34,8 +35,8 @@ public class CharacterMoveDict : MonoBehaviour
     void Start()
         {
         //doing it here makes it happen at the start
-            myInventoryDict.Add("Sword",1);
-            DisplayInventory(); 
+            //myInventoryDict.Add("Key",1);
+           // DisplayInventory(); 
         }
 
     // Update is called once per frame
@@ -66,12 +67,11 @@ public class CharacterMoveDict : MonoBehaviour
         }
     }
 
-    public void DisplayInventory()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        inventoryDisplay.text = "";
-        foreach (var item in myInventoryDict)
+        if (collision.gameObject.tag == "Enemy" && Input.GetKey(KeyCode.E))
         {
-            inventoryDisplay.text += "Item: " + item.Key + ", Quantity: " + item.Value + "\n";
+            Destroy(gameObject);
         }
     }
 

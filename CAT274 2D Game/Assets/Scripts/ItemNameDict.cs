@@ -36,6 +36,6 @@ public class ItemNameDict : MonoBehaviour
         {
             myPlayer.myInventoryDict.Add(itemName, itemNumber);
         }
-        myPlayer.DisplayInventory();
+        //myPlayer.DisplayInventory();
     }
 }

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Key
   - Enemy
+  - door
+  - Bush
+  - Special Bush
+  - CakeP
   layers:
   - Default
   - TransparentFX

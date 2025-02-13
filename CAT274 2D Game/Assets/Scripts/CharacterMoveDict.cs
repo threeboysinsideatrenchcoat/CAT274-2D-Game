@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro; 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //adding text to game
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class CharacterMoveDict : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class CharacterMoveDict : MonoBehaviour
 
     public TextMeshProUGUI inventoryDisplay;
 
+    public int KillCount = 0; 
     
     // Start is called before the first frame update
     private void Awake()
@@ -65,14 +68,62 @@ public class CharacterMoveDict : MonoBehaviour
          player.transform.position += Vector3.right * speed;
         Debug.Log("D Pressed");
         }
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy" && Input.GetKey(KeyCode.E))
+        if (KillCount == 10)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene("Ending");
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && Input.GetKey(KeyCode.Space))
+        {
+            Destroy(collision.gameObject);
+            KillCount += 1;
+        }
+
+        if (collision.gameObject.tag == "Bush" && Input.GetKey(KeyCode.E))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Special Bush" && Input.GetKey(KeyCode.E))
+        {
+            Destroy(collision.gameObject);
+        }
+
+        int test;
+        myInventoryDict.TryGetValue("key", out test);
+
+        if (collision.gameObject.tag == "door"  && test == 1)  
+        {
+            SceneManager.LoadScene("HouseScene");
+
+        }
+
+    }
+    //   if (collision.gameObject.tag == "Bush" && Input.GetKey(KeyCode.E))
+    //    {
+
+    public void AddItem(string itemname)
+    {
+        myInventoryDict.Add(itemname,1);
+
+
+    }
+    //KillCount = 9 
+        
+
+
+    //if(Destroy(collison.gameObject) && my.inventory )
+
+
+    ///
+    /// 1. size of collider
+    ///2. 
+    ///
+    ///
+    ///
+    ///
 
 }

@@ -72,6 +72,7 @@ public class CharacterMoveDict : MonoBehaviour
         if (KillCount == 10)
         {
             SceneManager.LoadScene("Ending");
+            Destroy(gameObject);
         }
     }
 
